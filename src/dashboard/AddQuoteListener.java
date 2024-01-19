@@ -27,9 +27,14 @@ public class AddQuoteListener implements ActionListener {
     }
   }
 
-  public void setQuotes(ArrayList<Quote> quotes) {
+  public void setQuotes(ArrayList<dashboard.Quote> quotes) {
   }
 
   public void setFrame(JFrame frame) {
+  }
+
+  public void setQuotes(ArrayList<dashboard.Quote> quotes) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setQuotes'");
   }
 }
