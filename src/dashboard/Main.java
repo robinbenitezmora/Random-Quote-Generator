@@ -1,32 +1,35 @@
 package dashboard;
 
 import java.util.ArrayList;
-import dashboard.Quote;
+
+import javax.swing.JFrame;
 
 public class Main {
   public static void main(String[] args) {
-   ArrayList<Quote> quotes = new ArrayList<>();
-   Person author1 = new Person("Julian", "Salinas");
-   Person author2 = new Person("", "Anonymous");
-   Person author3 = new Person("Mihaly", "Csikescentmihalyi");
-   Person author4 = new Person("Albert", "Einstein");
-   Person author5 = new Person("Princess", "Diana");
+    ArrayList<Quote> quotes = new ArrayList<Quote>();
+    quotes.add(new Quote("After a storm comes the peace"));
+    quotes.add(new Quote("The best is yet to come"));
+    quotes.add(new Quote("The best way out is always through"));
+    quotes.add(new Quote("The best way to predict the future is to create it"));
+    quotes.add(new Quote("The best way to get started is to quit talking and begin doing"));
+    quotes.add(new Quote("The best revenge is massive success"));
+    quotes.add(new Quote("The best preparation for tomorrow is doing your best today"));
 
-   Main mainInstance = new Main(); // Create an instance of the Main class
+    Dashboard dashboard = new Dashboard(quotes);
+    dashboard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Add this line
+    dashboard.setVisible(true);
 
-   Quote quote1 = mainInstance.new Quote("My style is unique and random. But I think it is important that it still makes sense. ", author1);
-   Quote quote2 = mainInstance.new Quote("Your limitation - it is only your imagination. ", author2);
-   Quote quote3 = mainInstance.new Quote("The best moments in our lives are not the passive, receptive, relaxing times... The best moments usually occur if a person's body or mind is stretched to its limits in a voluntary effort to accomplish something difficult and worthwhile. ", author3);
-   Quote quote4 = mainInstance.new Quote("The true sign of intelligence is not knowledge but imagination. ", author4);
-   Quote quote5 = mainInstance.new Quote("Carry out a random act of kindness, with no expectation of reward, safe in the knowledge that one day someone might do the same for you. ", author5);
- }
+    Thread thread = new Thread((Runnable) dashboard);
+    thread.start();
 
- quotes.add(quote1);
- quotes.add(quote2);
- quotes.add(quote3);
- quotes.add(quote4);
- quotes.add(quote5);
+    try {
+      thread.join();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
 
- Window w = new Window(quotes);
- w.createAndDisplayWindow(quotes);
+    System.out.println("Dashboard closed");
+
+    System.exit(0);
+  }
 }
